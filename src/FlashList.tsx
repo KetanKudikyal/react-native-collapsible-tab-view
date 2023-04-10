@@ -34,7 +34,6 @@ const FlatListMemo = React.memo(
 function FlashListImpl<R>(
   {
     contentContainerStyle,
-    style,
     onContentSizeChange,
     refreshControl,
     ...rest
@@ -54,7 +53,6 @@ function FlashListImpl<R>(
   })
 
   const {
-    style: _style,
     contentContainerStyle: _contentContainerStyle,
     progressViewOffset,
   } = useCollapsibleStyle()
@@ -104,15 +102,12 @@ function FlashListImpl<R>(
     [contentInsetValue]
   )
 
-  const memoStyle = React.useMemo(() => [_style, style], [_style, style])
-
   return (
     // @ts-expect-error typescript complains about `unknown` in the memo, it should be T
     <FlatListMemo
       {...rest}
       ref={ref}
       bouncesZoom={false}
-      style={memoStyle}
       contentContainerStyle={memoContentContainerStyle[0]}
       progressViewOffset={progressViewOffset}
       onScroll={scrollHandler}
@@ -123,8 +118,6 @@ function FlashListImpl<R>(
       contentOffset={memoContentOffset}
       automaticallyAdjustContentInsets={false}
       refreshControl={memoRefreshControl}
-      // workaround for: https://github.com/software-mansion/react-native-reanimated/issues/2735
-      onMomentumScrollEnd={() => {}}
     />
   )
 }
