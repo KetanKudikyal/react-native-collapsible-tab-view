@@ -97,9 +97,6 @@ function FlashListImpl<R>(
     <FlatListMemo
       {...rest}
       ref={ref}
-      ListHeaderComponentStyle={{
-        minHeight: _contentContainerStyle.minHeight,
-      }}
       bouncesZoom={false}
       contentContainerStyle={{
         paddingTop: _contentContainerStyle.paddingTop,
