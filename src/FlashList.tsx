@@ -2,6 +2,7 @@ import {
   FlashList as ShopifyFlatList,
   FlashListProps,
   AnimatedFlashList,
+  ContentStyle,
 } from '@shopify/flash-list'
 import React from 'react'
 
@@ -52,7 +53,11 @@ function FlashListImpl<R>(
     enable(true)
   })
 
-  const { style: _style, progressViewOffset } = useCollapsibleStyle()
+  const {
+    style: _style,
+    contentContainerStyle: _contentContainerStyle,
+    progressViewOffset,
+  } = useCollapsibleStyle()
 
   React.useEffect(() => {
     setRef(name, ref)
@@ -79,6 +84,15 @@ function FlashListImpl<R>(
     [progressViewOffset, refreshControl]
   )
 
+  const memoContentContainerStyle = React.useMemo(
+    () => [
+      _contentContainerStyle as ContentStyle,
+      // TODO: investigate types
+      contentContainerStyle as ContentStyle,
+    ],
+    [_contentContainerStyle, contentContainerStyle]
+  )
+
   const contentInsetValue = useConvertAnimatedToValue(contentInset)
 
   const memoContentInset = React.useMemo(() => ({ top: contentInsetValue }), [
@@ -99,7 +113,7 @@ function FlashListImpl<R>(
       ref={ref}
       bouncesZoom={false}
       style={memoStyle}
-      contentContainerStyle={contentContainerStyle}
+      contentContainerStyle={memoContentContainerStyle[0]}
       progressViewOffset={progressViewOffset}
       onScroll={scrollHandler}
       onContentSizeChange={scrollContentSizeChangeHandlers}
