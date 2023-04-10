@@ -1,9 +1,9 @@
 import {
   FlashList as ShopifyFlatList,
   FlashListProps,
-  AnimatedFlashList,
 } from '@shopify/flash-list'
 import React from 'react'
+import { AnimatedFlashList } from './helpers'
 
 import {
   useAfterMountEffect,
@@ -103,6 +103,7 @@ function FlashListImpl<R>(
       bouncesZoom={false}
       contentContainerStyle={{
         paddingTop: _contentContainerStyle.paddingTop,
+        ...contentContainerStyle,
       }}
       progressViewOffset={progressViewOffset}
       onScroll={scrollHandler}
