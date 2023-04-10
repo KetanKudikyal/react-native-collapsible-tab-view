@@ -1,3 +1,4 @@
+import { FlashList } from '@shopify/flash-list'
 import React, { ComponentProps } from 'react'
 import {
   FlatList,
@@ -13,6 +14,7 @@ export type ContainerRef = PagerView
 
 export type RefComponent =
   | FlatList<any>
+  | FlashList<any>
   | ScrollView
   | Animated.ScrollView
   | SectionList<any>
