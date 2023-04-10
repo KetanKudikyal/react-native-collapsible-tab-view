@@ -82,15 +82,6 @@ function FlashListImpl<R>(
     [progressViewOffset, refreshControl]
   )
 
-  const memoContentContainerStyle = React.useMemo(
-    () => [
-      _contentContainerStyle as ContentStyle,
-      // TODO: investigate types
-      contentContainerStyle as ContentStyle,
-    ],
-    [_contentContainerStyle, contentContainerStyle]
-  )
-
   const contentInsetValue = useConvertAnimatedToValue(contentInset)
 
   const memoContentInset = React.useMemo(() => ({ top: contentInsetValue }), [
@@ -107,8 +98,13 @@ function FlashListImpl<R>(
     <FlatListMemo
       {...rest}
       ref={ref}
+      ListHeaderComponentStyle={{
+        minHeight: _contentContainerStyle.minHeight,
+      }}
       bouncesZoom={false}
-      contentContainerStyle={memoContentContainerStyle[0]}
+      contentContainerStyle={{
+        paddingTop: _contentContainerStyle.paddingTop,
+      }}
       progressViewOffset={progressViewOffset}
       onScroll={scrollHandler}
       onContentSizeChange={scrollContentSizeChangeHandlers}
