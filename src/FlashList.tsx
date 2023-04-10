@@ -2,7 +2,6 @@ import {
   FlashList as ShopifyFlatList,
   FlashListProps,
   AnimatedFlashList,
-  ContentStyle,
 } from '@shopify/flash-list'
 import React from 'react'
 
