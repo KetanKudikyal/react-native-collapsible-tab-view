@@ -46,7 +46,15 @@ export {
   useHeaderMeasurements,
   useFocusedTab,
   useAnimatedTabIndex,
+  useAfterMountEffect,
+  useChainCallback,
   useCollapsibleStyle,
+  useConvertAnimatedToValue,
+  useScrollHandlerY,
+  useSharedAnimatedRef,
+  useTabNameContext,
+  useTabsContext,
+  useUpdateScrollViewContentSize,
 } from './hooks'
 export type { HeaderMeasurements } from './hooks'
 
