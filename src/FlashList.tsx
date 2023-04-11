@@ -1,9 +1,9 @@
 import {
   FlashList as ShopifyFlatList,
   FlashListProps,
+  AnimatedFlashList,
 } from '@shopify/flash-list'
 import React from 'react'
-import { AnimatedFlashList } from './helpers'
 
 import {
   useAfterMountEffect,
@@ -21,7 +21,7 @@ import {
  * Used as a memo to prevent rerendering too often when the context changes.
  * See: https://github.com/facebook/react/issues/15156#issuecomment-474590693
  */
-const FlatListMemo = React.memo(
+const FlashListMemo = React.memo(
   React.forwardRef<
     ShopifyFlatList<any>,
     React.PropsWithChildren<FlashListProps<unknown>>
@@ -32,6 +32,7 @@ const FlatListMemo = React.memo(
 
 function FlashListImpl<R>(
   {
+    estimatedItemSize,
     contentContainerStyle,
     onContentSizeChange,
     refreshControl,
@@ -94,7 +95,7 @@ function FlashListImpl<R>(
 
   return (
     // @ts-expect-error typescript complains about `unknown` in the memo, it should be T
-    <FlatListMemo
+    <FlashListMemo
       {...rest}
       ref={ref}
       bouncesZoom={false}
@@ -106,7 +107,7 @@ function FlashListImpl<R>(
       onScroll={scrollHandler}
       onContentSizeChange={scrollContentSizeChangeHandlers}
       scrollEventThrottle={16}
-      estimatedItemSize={300}
+      estimatedItemSize={estimatedItemSize || 300}
       contentInset={memoContentInset}
       contentOffset={memoContentOffset}
       automaticallyAdjustContentInsets={false}
