@@ -3,10 +3,8 @@ import {
   FlashListProps,
 } from '@shopify/flash-list'
 import React from 'react'
-import Animated from "react-native-reanimated";
-import { FlatList } from "react-native";
-
-export const AnimatedFlashList = Animated.createAnimatedComponent(FlatList);
+import { FlatList } from 'react-native'
+import Animated from 'react-native-reanimated'
 
 import {
   useAfterMountEffect,
@@ -20,6 +18,8 @@ import {
   useUpdateScrollViewContentSize,
 } from './hooks'
 
+export const AnimatedFlashList = Animated.createAnimatedComponent(FlatList)
+
 /**
  * Used as a memo to prevent rerendering too often when the context changes.
  * See: https://github.com/facebook/react/issues/15156#issuecomment-474590693
@@ -29,6 +29,7 @@ const FlashListMemo = React.memo(
     ShopifyFlatList<any>,
     React.PropsWithChildren<FlashListProps<unknown>>
   >((props, passRef) => {
+    // @ts-ignore
     return <AnimatedFlashList ref={passRef} {...props} />
   })
 )
