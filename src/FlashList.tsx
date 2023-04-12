@@ -1,9 +1,12 @@
 import {
   FlashList as ShopifyFlatList,
   FlashListProps,
-  AnimatedFlashList,
 } from '@shopify/flash-list'
 import React from 'react'
+import Animated from "react-native-reanimated";
+import { FlatList } from "react-native";
+
+export const AnimatedFlashList = Animated.createAnimatedComponent(FlatList);
 
 import {
   useAfterMountEffect,
