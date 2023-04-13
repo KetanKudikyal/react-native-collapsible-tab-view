@@ -3,9 +3,8 @@ import {
   FlashListProps,
 } from '@shopify/flash-list'
 import React from 'react'
-import { FlatList } from 'react-native'
-import Animated from 'react-native-reanimated'
 
+import { AnimatedFlashList } from './helpers'
 import {
   useAfterMountEffect,
   useChainCallback,
@@ -17,8 +16,6 @@ import {
   useTabsContext,
   useUpdateScrollViewContentSize,
 } from './hooks'
-
-export const AnimatedFlashList = Animated.createAnimatedComponent(FlatList)
 
 /**
  * Used as a memo to prevent rerendering too often when the context changes.
