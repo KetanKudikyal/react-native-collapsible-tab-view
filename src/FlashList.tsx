@@ -26,7 +26,6 @@ const FlashListMemo = React.memo(
     ShopifyFlatList<any>,
     React.PropsWithChildren<FlashListProps<unknown>>
   >((props, passRef) => {
-    // @ts-ignore
     return <AnimatedFlashList ref={passRef} {...props} />
   })
 )

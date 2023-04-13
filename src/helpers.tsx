@@ -13,9 +13,7 @@ export const { isRTL } = I18nManager
 export const IS_IOS = Platform.OS === 'ios'
 
 export const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
-export const AnimatedFlashList = IS_IOS
-  ? Animated.createAnimatedComponent(FlatList)
-  : Animated.createAnimatedComponent(FlashList)
+export const AnimatedFlashList = Animated.createAnimatedComponent(FlashList)
 
 export const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
 
